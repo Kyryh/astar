@@ -114,7 +114,9 @@ impl Scene {
         };
         self.add_neighbours(next_cell);
         self.neighbours.get_mut(&next_cell).unwrap().visited = true;
-        *self.get_pixel_mut(next_cell.0, next_cell.1) = Color::RED;
+        if next_cell != self.start {
+            *self.get_pixel_mut(next_cell.0, next_cell.1) = Color::RED;
+        }
         if next_cell == self.end {
             self.reached = true;
             let mut previous_cell = next_cell;
@@ -160,7 +162,9 @@ impl Scene {
                         visited,
                     },
                 );
-                *self.get_pixel_mut(x, y) = if visited { Color::RED } else { Color::GREEN }
+                if (x, y) != self.start {
+                    *self.get_pixel_mut(x, y) = if visited { Color::RED } else { Color::GREEN }
+                }
             }
         }
     }
