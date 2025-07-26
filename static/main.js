@@ -103,7 +103,6 @@ await init().then(function () {
     }
 
     function run_pathfinding() {
-        debugger
         if (scene !== undefined) {
             scene.update(fast.prop('checked'))
         }
