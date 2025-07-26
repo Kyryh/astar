@@ -35,19 +35,25 @@ await init().then(function () {
 
     $("#canvas_w").on("change", function () {
         const width = $(this).val()
-        canvas.attr("width", width)
-        set_max(start.x, width - 1)
-        set_max(end.x, width - 1)
-        ctx.imageSmoothingEnabled = false
+        update_canvas(width, canvas.attr("height"))
     }).trigger("change")
 
     $("#canvas_h").on("change", function () {
         const height = $(this).val()
+        update_canvas(canvas.attr("width"), height)
+    }).trigger("change")
+
+    function update_canvas(width, height) {
+        const img = ctx.getImageData(0, 0, canvas.attr("width"), canvas.attr("height"))
+        canvas.attr("width", width)
         canvas.attr("height", height)
+        ctx.imageSmoothingEnabled = false
+        ctx.putImageData(img, 0, 0)
+        set_max(start.x, width - 1)
+        set_max(end.x, width - 1)
         set_max(start.y, height - 1)
         set_max(end.y, height - 1)
-        ctx.imageSmoothingEnabled = false
-    }).trigger("change")
+    }
 
     function run() {
         scene = new Scene(
