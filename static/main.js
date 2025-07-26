@@ -34,12 +34,18 @@ await init().then(function () {
     const fast = $("#fast")
 
     $("#canvas_w").on("change", function () {
-        canvas.attr("width", $(this).val())
+        const width = $(this).val()
+        canvas.attr("width", width)
+        set_max(start.x, width - 1)
+        set_max(end.x, width - 1)
         ctx.imageSmoothingEnabled = false
     }).trigger("change")
 
     $("#canvas_h").on("change", function () {
-        canvas.attr("height", $(this).val())
+        const height = $(this).val()
+        canvas.attr("height", height)
+        set_max(start.y, height - 1)
+        set_max(end.y, height - 1)
         ctx.imageSmoothingEnabled = false
     }).trigger("change")
 
@@ -54,6 +60,18 @@ await init().then(function () {
             ctx
         )
         scene.init()
+    }
+
+    /**
+     * @param {JQuery} elem 
+     * @param {number} max 
+     */
+    function set_max(elem, max) {
+        elem.attr("max", max)
+        let value = elem.val()
+        if (value > max) {
+            elem.val(max)
+        }
     }
 
     $("#run-button").on("click", run)
