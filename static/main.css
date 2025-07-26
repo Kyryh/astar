@@ -1,0 +1,23 @@
+#canvas {
+    border: 1px black solid;
+    image-rendering: pixelated;
+    width: 80%;
+    touch-action: none;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.list>* {
+    margin: 10px 30px;
+}
