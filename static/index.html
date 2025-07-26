@@ -16,6 +16,18 @@
     <div class="center">
         <div class="list">
             <div>
+                Canvas size
+                <br>
+                <label>
+                    Width
+                    <input type="number" id="canvas_w" min="1" max="4096" value="100">
+                </label>
+                <label>
+                    Height
+                    <input type="number" id="canvas_h" min="1" max="4096" value="50">
+                </label>
+            </div>
+            <div>
                 Start position
                 <br>
                 <label>
@@ -58,7 +70,7 @@
 
             <button id="run-button">Run</button>
         </div>
-        <canvas id="canvas" width="100" height="50"></canvas>
+        <canvas id="canvas"></canvas>
     </div>
 </body>
 

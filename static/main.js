@@ -33,6 +33,15 @@ await init().then(function () {
 
     const fast = $("#fast")
 
+    $("#canvas_w").on("change", function () {
+        canvas.attr("width", $(this).val())
+        ctx.imageSmoothingEnabled = false
+    }).trigger("change")
+
+    $("#canvas_h").on("change", function () {
+        canvas.attr("height", $(this).val())
+        ctx.imageSmoothingEnabled = false
+    }).trigger("change")
 
     function run() {
         scene = new Scene(
